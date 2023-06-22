@@ -1,0 +1,16 @@
+.todo {
+  border: 1px solid black;
+}
+.done {
+  text-decoration: line-through;
+}
+.containerUl {
+  text-decoration: none;
+}
+li {
+  margin-bottom: 15px;
+}
+.bt {
+  cursor: pointer;
+  z-index: 1000;
+}
