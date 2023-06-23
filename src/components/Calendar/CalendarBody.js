@@ -1,43 +1,41 @@
 // import moment from "moment/moment";
 import { useEffect, useState } from "react";
-import { compareTwoDates, generateDate } from "../../utils/arrayOfDate";
-import CalendarDays from "./CalendarDays";
-import { FAKE_ARR_EVENTS } from "../../data/day-month";
+import { generateDate } from "../../utils/arrayOfDate";
+import WeekDaysNames from "./WeekDaysNames";
 import TotalDays from "./TotalDays";
+import Dialog from "../Events/Dialog";
 
 const CalendarBody = ({ currentDate, defaultDate }) => {
   let month = currentDate.month();
   let year = currentDate.year();
   let totalDays = generateDate(month, year);
 
-  const [selectedDate, setSelectedDate] = useState(currentDate);
+  const [selectedDate, setSelectedDate] = useState("");
   const [calendarEvent, setCalendarEvent] = useState(null);
   const [showEvent, setShowEvent] = useState(false);
+  const [todos, setTodos] = useState([]);
+
+  const handleShowEvent = (v) => {
+    setShowEvent(!v);
+  };
 
   return (
     <>
-      {showEvent && ( //show events onClick on event
-        <div className="test_dialog">
-          <p>{calendarEvent.id}</p>
-          <p>{`${
-            calendarEvent.title
-              ? "Edit " + calendarEvent.title
-              : "Add new event"
-          }`}</p>
-
-          <button
-            onClick={() => {
-              setShowEvent(!showEvent);
-              // setCalendarEvent("");
-            }}
-          >
-            mmmm
-          </button>
-        </div>
+      {showEvent && (
+        <Dialog
+          setShowEvent={setShowEvent}
+          showEvent={showEvent}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          todos={todos}
+          setTodos={setTodos}
+          handleShowEvent={handleShowEvent}
+        />
       )}
+
       <div role="table" className="table">
         <div className="thead">
-          <CalendarDays defaultDate={defaultDate} />
+          <WeekDaysNames defaultDate={defaultDate} />
         </div>
         <div className="tbody">
           <TotalDays
@@ -46,6 +44,7 @@ const CalendarBody = ({ currentDate, defaultDate }) => {
             setShowEvent={setShowEvent}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
+            todos={todos}
           />
 
           {/* <EventsComponents selectEventHandler={selectEventHandler} /> */}

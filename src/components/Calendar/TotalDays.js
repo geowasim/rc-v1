@@ -7,6 +7,7 @@ const TotalDays = ({
   setCalendarEvent,
   setShowEvent,
   setSelectedDate,
+  todos,
 }) => {
   return (
     <>
@@ -42,6 +43,8 @@ const TotalDays = ({
               setCalendarEvent={setCalendarEvent}
               setShowEvent={setShowEvent}
               date={date}
+              setSelectedDate={setSelectedDate}
+              todos={todos}
             />
           </ul>
         );

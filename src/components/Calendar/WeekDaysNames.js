@@ -1,6 +1,6 @@
 import React from "react";
 
-const CalendarDays = (props) => {
+const WeekDaysNames = (props) => {
   const daysArray = [];
   for (let index = 0; index < 7; index++) {
     daysArray.push(props.defaultDate.weekday(index).format("ddd"));
@@ -19,4 +19,4 @@ const CalendarDays = (props) => {
   );
 };
 
-export default CalendarDays;
+export default WeekDaysNames;
